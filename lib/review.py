@@ -18,6 +18,7 @@ class Review:
     def set_rating(self, rating):
         if (type(rating) == int) and (1 <= rating <= 5):
             self._rating = rating
+            print(self._rating)
         else:
             print("Rating must be an interger and between 1 and 5")
     
@@ -26,6 +27,7 @@ class Review:
     
     def set_customer(self, customer):
         self._customer = customer
+        print(self._customer)
     
     customer = property(get_customer, set_customer)
     
@@ -34,6 +36,7 @@ class Review:
     
     def set_restaurant(self, restaurant):
         self._restaurant = restaurant
+        print(self._restaurant)
     
     restaurant = property(get_restaurant, set_restaurant)
     
@@ -41,3 +44,7 @@ class Review:
         return f"{self.customer} gave {self.rating} stars to {self.restaurant}"
             
     rating = property(get_rating, set_rating)
+    
+    
+review1 = Review(Customer("Selam", "Estifanos"), Restaurant("Bwibo"), 5)
+print(review1)

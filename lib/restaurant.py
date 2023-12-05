@@ -1,3 +1,6 @@
+from lib.review import Review
+from lib.customer import Customer
+
 class Restaurant:
     
     all_restaurants = []
