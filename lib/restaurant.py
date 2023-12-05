@@ -1,5 +1,4 @@
-from lib.review import Review
-from lib.customer import Customer
+from review import Review
 
 class Restaurant:
     
@@ -24,6 +23,12 @@ class Restaurant:
             print("The name must be a string")
             
     name = property(get_name, set_name)
+    
+    def reviews(self):
+        return [review for review in Review.all_reviews if review.get_restaurant() == self]
+
+    def customers(self):
+        return list(set(review.get_customer() for review in self.reviews()))
     
 Bwibo = Restaurant("Bwibo")
 print(Restaurant.all_restaurants)

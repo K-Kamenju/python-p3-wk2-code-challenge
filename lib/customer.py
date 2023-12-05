@@ -1,9 +1,11 @@
-from lib.review import Review
-from lib.restaurant import Restaurant
+from review import Review
+from restaurant import Restaurant
 
 class Customer:
     
     all_customers = []
+    reviews_list = []
+    
     
     def __init__(self, given_name, family_name):
         self.given_name = given_name
@@ -20,7 +22,6 @@ class Customer:
     def set_given_name(self, given_name):
         if (type(given_name) == str):
             self._given_name = given_name
-            print(given_name)
         else:
             print("Given_name must be a string")
             
@@ -32,7 +33,6 @@ class Customer:
     def set_family_name(self, family_name):
         if (type(family_name) == str):
             self._family_name = family_name
-            print(family_name)
         else:
             print("Given_name must be a string")
     
@@ -41,7 +41,23 @@ class Customer:
     def full_name(self):
         return f"{self.given_name} {self.family_name}"
     
+    def restaurants(self):
+        return list(set(review.get_restaurant() for review in Review.all_reviews if review.get_customer() == self))
+
+    def add_review(self, restaurant, rating):
+        if restaurant in Restaurant.all_restaurants:
+            new_review = Review(self, restaurant, rating)
+            return new_review
+        else:
+            print("Error: Restaurant not found.")
+            return None
+    
 
 Kamenju = Customer("Selam", "Estifanos")
-print(Kamenju.full_name())
-print(Customer.all_customers)
+
+# Example for adding a review
+restaurant_example = Restaurant("Bwibo")
+review_example = Kamenju.add_review(restaurant_example, 4)
+
+# Print the restaurants Kamenju has reviewed
+print("Restaurants reviewed by Kamenju:", Kamenju.restaurants())
