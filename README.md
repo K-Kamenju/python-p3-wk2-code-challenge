@@ -7,6 +7,8 @@ This project involves three main models in a Yelp-style domain: Restaurant, Cust
 3. A Review belongs to both a Customer and a Restaurant.
 4. The relationship between Restaurant and Customer forms a many-to-many relationship.
 
+Please note due to import errors, the code challenge is done on one file only
+
 ## Project Setup
 
 1. Create a new project folder.

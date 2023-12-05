@@ -1,5 +1,5 @@
 '''
-Due to errors in my import statement i have created one code challenge file
+Due to errors in my import statement I have created one code challenge file
 '''
 
 
@@ -78,6 +78,7 @@ class Customer:
         return f"Customer: {self.full_name()}"
 
 
+
 '''
 RESTAURANT
 '''
@@ -133,6 +134,7 @@ class Restaurant:
     def __str__(self):
         # String representation of the Restaurant object
         return f"Restaurant: {self.name}"
+
 
 
 '''
@@ -196,6 +198,13 @@ class Review:
     def __str__(self):
         # String representation of the Review object
         return f"{self.customer.full_name()} gave {self.rating} stars to {self.restaurant.name}"
+
+
+'''
+TEST SUITES
+'''
+
+
 
 
 # Test Suites 
