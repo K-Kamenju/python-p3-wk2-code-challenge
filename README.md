@@ -244,6 +244,39 @@ class Review:
 
 ```
 
+2. The find_by_full_name(name) and find_all_by_given_name(name) class methods extend the functionality of the Customer class by introducing search capabilities. The find_by_full_name(name) method takes a string representing a full name and returns the first customer instance whose full name matches the provided string. On the other hand, the find_all_by_given_name(name) method takes a string representing a given name and returns a list containing all customers with that given name.
+
+```python
+
+   @classmethod
+    def find_by_full_name(cls, name):
+        # Class method to find the first customer whose full name matches
+        for customer in cls.all_customers:
+            if customer.full_name() == name.title():
+                return customer
+        return None
+
+    @classmethod
+    def find_all_by_given_name(cls, name):
+        # Class method to find all customers with a given name
+        return [customer for customer in cls.all_customers if customer.get_given_name().title() == name.title()]
+
+```
+
+3. In the Restaurant class, the average_star_rating() method provides a convenient way to calculate and retrieve the average star rating for a restaurant based on its reviews. This method involves summing up all the ratings for a restaurant and dividing by the total number of ratings. 
+
+```python
+
+   def average_star_rating(self):
+        # Method to calculate the average star rating for the restaurant
+        ratings = [review.rating for review in self.reviews()]
+        if ratings:
+            return sum(ratings) / len(ratings)
+        else:
+            return 0
+
+```
+
 ### Test Cases
 
 Test cases have been created to test out the methods:
