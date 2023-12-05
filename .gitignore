@@ -1,1 +1,4 @@
 lib/__pycache__/customer.cpython-310.pyc
+lib/__pycache__/restaurant.cpython-310.pyc
+.gitignore
+lib/__pycache__/review.cpython-310.pyc
