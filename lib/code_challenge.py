@@ -131,22 +131,42 @@ class Review:
         # Class method to add a review to the list of all reviews
         cls.all_reviews.append(review)
 
-    @property
-    def customer(self):
-        # Getter method for the customer
+   # Getter and setter for customer
+    def get_customer(self):
         return self._customer
 
-    @customer.setter
-    def customer(self, customer):
-        # Setter method for the customer with type checking
+    def set_customer(self, customer):
         if isinstance(customer, Customer):
             self._customer = customer
-            print(self._customer)
         else:
             print("Error: Invalid customer object")
 
-    # Similar getter and setter methods for restaurant and rating
+    customer = property(get_customer, set_customer)
 
+    # Getter and setter for restaurant
+    def get_restaurant(self):
+        return self._restaurant
+
+    def set_restaurant(self, restaurant):
+        if isinstance(restaurant, Restaurant):
+            self._restaurant = restaurant
+        else:
+            print("Error: Invalid restaurant object")
+
+    restaurant = property(get_restaurant, set_restaurant)
+
+    # Getter and setter for rating
+    def get_rating(self):
+        return self._rating
+
+    def set_rating(self, rating):
+        if (isinstance(rating, int)) and (1 <= rating <= 5):
+            self._rating = rating
+        else:
+            print("Rating must be an integer and between 1 and 5")
+
+    rating = property(get_rating, set_rating)
+    
     def __str__(self):
         # String representation of the Review object
         return f"{self.customer.full_name()} gave {self.rating} stars to {self.restaurant.name}"
