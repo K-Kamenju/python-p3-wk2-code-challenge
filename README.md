@@ -232,6 +232,18 @@ class Review:
 
 ```
 
+## `DELIVERABLE 3 - Aggregate and Association Methods`
+
+1. For the Customer class, the num_reviews() method provides a straightforward way to determine the total number of reviews authored by a specific customer. This information is essential for understanding a customer's level of engagement and influence within the Yelp-style domain.
+
+```python
+
+   def num_reviews(self):
+        # Method to get the total number of reviews authored by the customer
+        return len([review for review in Review.all_reviews if review.customer == self])
+
+```
+
 ### Test Cases
 
 Test cases have been created to test out the methods:

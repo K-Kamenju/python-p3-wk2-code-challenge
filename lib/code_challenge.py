@@ -55,6 +55,23 @@ class Customer:
         else:
             print("Error: Restaurant not found.")
             return None
+        
+    def num_reviews(self):
+        # Method to get the total number of reviews authored by the customer
+        return len([review for review in Review.all_reviews if review.customer == self])
+
+    @classmethod
+    def find_by_full_name(cls, name):
+        # Class method to find the first customer whose full name matches
+        for customer in cls.all_customers:
+            if customer.full_name() == name.title():
+                return customer
+        return None
+
+    @classmethod
+    def find_all_by_given_name(cls, name):
+        # Class method to find all customers with a given name
+        return [customer for customer in cls.all_customers if customer.get_given_name().title() == name.title()]
 
     def __str__(self):
         # String representation of the Customer object
@@ -103,6 +120,15 @@ class Restaurant:
     def customers(self):
         # Method to get a list of customers who reviewed the restaurant
         return list(set(review.customer for review in self.reviews()))
+    
+    def average_star_rating(self):
+        # Method to calculate the average star rating for the restaurant
+        ratings = [review.rating for review in self.reviews()]
+        if ratings:
+            return sum(ratings) / len(ratings)
+        else:
+            return 0
+
 
     def __str__(self):
         # String representation of the Restaurant object
@@ -172,7 +198,7 @@ class Review:
         return f"{self.customer.full_name()} gave {self.rating} stars to {self.restaurant.name}"
 
 
-# Test Suites
+# Test Suites 
 Kamenju = Customer("Kamenju", "Estifanos")
 Steve = Customer("Steve", "Jobs")
 restaurant_example_1 = Restaurant("Bwibo")
@@ -182,12 +208,16 @@ review_example_2 = Review(Steve, restaurant_example_1, 2)
 review_example_3 = Review(Kamenju, restaurant_example_2, 3)
 
 # Print the names of the restaurants Kamenju and Steve have reviewed
-print("Restaurants reviewed by Kamenju:", Kamenju.restaurants())
+print("\nRestaurants reviewed by Kamenju:", Kamenju.restaurants())
 print("Restaurants reviewed by Steve:", Steve.restaurants())
 
 # Print all customers and restaurants
-print("All Customers:", Customer.all_customers)
+print("\nAll Customers:", Customer.all_customers)
 print("All Restaurants:", Restaurant.all_restaurants)
+
+# Print the number of reviews by Kamenju
+print(f"\nNumber of reviews by {Kamenju.full_name()}: {Kamenju.num_reviews()}")
+
 
 # Print all reviews for a specific restaurant
 specific_restaurant = restaurant_example_1  # Change to the desired restaurant
@@ -195,3 +225,6 @@ print(f"\nAll Reviews for {specific_restaurant.name}:")
 for review in specific_restaurant.reviews():
     print(f"{review.customer.full_name()} gave {review.rating} stars")
     
+# Print Average star rating for specific restaurant
+print(f"\nAverage star rating for {restaurant_example_1.name}: {restaurant_example_1.average_star_rating()}")
+
